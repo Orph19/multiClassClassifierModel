@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from transformers import pipeline
 import json
 import os
+import torch
 
 app = Flask(__name__)
 
@@ -32,7 +33,7 @@ def load_model():
     except Exception as e:
         print(f"Error loading model or label map: {e}")
         classifier = None
-        label_map = None 
+        label_map = None
 
 
 def initialize_app():
@@ -46,7 +47,7 @@ with app.app_context():
 @app.route('/api/predictions', methods=['POST'])
 def predict():
     if classifier is None:
-        return jsonify({"error": "Model not loaded. Server might be initializing or encountered an error."}), 503 
+        return jsonify({"error": "Model not loaded. Server might be initializing or encountered an error."}), 503
 
     if not request.is_json:
         return jsonify({"error": "Request must be JSON"}), 400
@@ -61,8 +62,10 @@ def predict():
         return jsonify({"error": "'tags' must contain only strings."}), 400
 
     try:
-        predictions = classifier(tags)
-        print('Predictions were succesfully made')
+        print('Starting model predictions....')
+        with torch.no_grad():
+            predictions = classifier(tags)
+        print('Model predictions were succesfully made')
         results = []
         for i, text in enumerate(tags):
             predicted_label_raw = predictions[i]['label']
