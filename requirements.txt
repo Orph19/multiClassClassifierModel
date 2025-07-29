@@ -46,9 +46,9 @@ safetensors
 six
 sympy==1.13.3
 tokenizers
-torch==2.7.1+cpu
-torchaudio==2.7.1+cpu
-torchvision==0.22.1+cpu
+torch==2.7.1
+torchaudio==2.7.1
+torchvision==0.22.1
 tqdm
 transformers
 typing_extensions
