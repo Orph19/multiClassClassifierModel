@@ -16,6 +16,7 @@ filelock
 Flask
 frozenlist
 fsspec
+gunicorn
 huggingface_hub
 idna
 importlib_metadata
