@@ -1,19 +1,19 @@
 # Multi class classifier model for media tags
-This model forms part of the web app I created for the Qloo LLM Hackathon. It receives formated tags from media entities and clasiffies them to narrative components such as characters, genres, subgenres...
+This model forms part of the web app I created for the Qloo LLM Hackathon. It receives formatted tags from media entities and classifies them into narrative components such as characters, genres, subgenres...
 
 ## Model and Dataset
-- Type of model: The initial model relies on the pretrained DistilBERT. Semi-supervised Learning was employed. 
-- Source: The model was trained with around 450 labeled tags from the Qloo api taste usage and related entity tags. 
-- Description: It is a combination from movies, books and tv_shows, and cross domain entities like artists and destinations. Here an example with base format: "urn:tag:keyword:media": "dragonfly"
-- Preprocessing: The tags were formated to match a format like "keyword:media:dragonfly", mainting the type,source and value.
-- 
+- Model Type: The initial model is based on the pre-trained DistilBERT architecture, and semi-supervised learning was used for training.
+- Training Data: The model was trained on approximately 450 labeled tags from the Qloo API, including taste usage and related entities.
+- Data Description: The dataset is a combination of tags from movies, books, TV shows, and cross-domain entities like artists and destinations. A base format example is: "urn:tag:keyword:media": "dragonfly".
+- Preprocessing: Tags were preprocessed into a format like "keyword:media:dragonfly", which maintains the tag's type, source, and value.
+  
 ## Training and Evaluation
 - Hardware: Training was performed on a GPU (T4) on Google Colab.
 - Training Time: Approximately 40 minutes.
 - Overall accuracy of around 74
 
 ## Usage
-The model can classify tags suchs as" wildlife" as part of the topics of a narrative, "child in forest" as a story's character. All the categories can be found in the file int_to_category.json
+This model can classify tags into narrative components. For example, it can identify "wildlife" as a topic of a narrative and "child in forest" as a character. You can find a complete list of all the categories in the int_to_category.json file.
 
 ## Local Installation
 1. Install Python dependencies: 
